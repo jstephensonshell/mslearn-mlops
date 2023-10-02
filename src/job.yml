@@ -1,15 +1,15 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 code: model
 command: >-
-  python 
-  --
-  --
+  python ./src/model/train.py
+  --training_data ${{inputs.training_data}}/diabetes-dev.csv
+  --reg_rate ${{inputs.reg_rate}}
 inputs:
   training_data: 
     type: uri_folder 
-    path: 
+    path: azureml://subscriptions/320f3752-9da6-4e75-9ab0-80ec4ccc7d63/resourcegroups/SEIF-H2F-PUB-SBX-EUW-AML/workspaces/SEIF-H2F-PUB-SBX-EUW-AML1/datastores/workspaceblobstore/paths/LocalUpload/534e63694838be564a42c83cb065f8fd/data/
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
-compute: 
-experiment_name: 
-description: 
+compute: azureml:seifh2fsbxeuwaml1-joshs
+experiment_name: Test_run_js_231002
+description: Test run on 2nd October 2023
